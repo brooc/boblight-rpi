@@ -189,6 +189,10 @@ bool CDeviceSPI::WriteBuffer()
     printf("\n");
   }
 
+  //to latch in the data, the WS2801 needs the clock pin low for 500 microseconds
+  if (m_type == WS2801)
+    USleep(500);
+
   return true;
 }
 
