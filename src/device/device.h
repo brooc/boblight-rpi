@@ -102,6 +102,7 @@ class CDevice : public CThread
     void SetAllowSync(bool allowsync)                 { m_allowsync = allowsync; }
     void SetDebug(bool debug)                         { m_debug = debug; }
     void SetDelayAfterOpen(int64_t delay)             { m_delayafteropen = delay; }
+    void SetThreadPriority(int priority)              { m_threadpriority = priority; m_setpriority = true;}
 
     int GetNrChannels()     { return m_channels.size(); }
       
@@ -125,6 +126,8 @@ class CDevice : public CThread
     bool        m_allowsync;
     bool        m_debug;
     int64_t     m_delayafteropen;
+    int         m_threadpriority;
+    bool        m_setpriority;
 
     std::vector<CChannel> m_channels;
 

@@ -133,6 +133,7 @@ class CConfig
     bool SetDeviceBits(CDeviceRS232* device, int devicenr);
     bool SetDeviceMax(CDeviceRS232* device, int devicenr);
     void SetDeviceDelayAfterOpen(CDevice* device, int devicenr);
+    void SetDeviceThreadPriority(CDevice* device, int devicenr);
 
     bool SetLightName(CLight& light, std::vector<CConfigLine>& lines, int lightnr);
     void SetLightScanRange(CLight& light, std::vector<CConfigLine>& lines);
