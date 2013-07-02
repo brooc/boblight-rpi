@@ -1,13 +1,14 @@
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = 
+AM_CPPFLAGS = -DSTANDALONE -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -D_LINUX -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -Wall -g -DHAVE_LIBOPENMAX=2 -DOMX -DOMX_SKIP64BIT -ftree-vectorize -pipe -DUSE_EXTERNAL_OMX -DHAVE_LIBBCM_HOST -DUSE_EXTERNAL_LIBBCM_HOST -DUSE_VCHIQ_ARM -Wno-psabi
 
 AM_CFLAGS =\
 	 -Wall \
-	 -g
+	 -g 
 
 bin_PROGRAMS = boblightd \
-	boblight-constant
+	boblight-constant \
+	boblight-openmax
         
 
 if HAVE_X11
@@ -33,6 +34,23 @@ boblight_constant_SOURCES = \
 	clients/flagmanager.cpp \
 	clients/boblight-constant/flagmanager-constant.cpp \
 	util/misc.cpp
+
+boblight_openmax_SOURCES = \
+        clients/boblight-openmax/boblight-openmax.cpp \
+        clients/flagmanager.cpp \
+        clients/boblight-openmax/flagmanager-openmax.cpp \
+        util/misc.cpp
+
+boblight_openmax_LDFLAGS = -L/home/ohad/RaspberryPi/firmware-master/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/ilclient -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/vgfont
+
+
+#boblight_openmax_INCLUDE += -I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/ \
+#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/interface/vcos/pthreads \
+#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/interface/vmcs_host/linux \
+#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/ilclient \
+#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/vgfont -I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/
+
+boblight_openmax_INCLUDE = -I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont -I$(SDKSTAGE)/opt/vc/include/
 
 boblight_X11_SOURCES = \
 	clients/boblight-X11/boblight-X11.cpp \
