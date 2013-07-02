@@ -124,9 +124,10 @@ bool CGrabberOpenmax::Run()
 
 		  for (int x = 0; x < m_size && !m_stop; x++)
 		  {
-			  rgb[0] = *(image_ptr + downsampled_width * x);//(info.width) * 3 * x/m_size);
-			  rgb[1] = *(image_ptr + downsampled_width * x + 1);//(info.width) * 3 * x/m_size + 1);
-			  rgb[2] = *(image_ptr + downsampled_width * x + 2);//(info.width) * 3 * x/m_size + 2);
+                          image_ptr += downsampled_width * x;
+			  rgb[0] = *image_ptr;
+			  rgb[1] = *(image_ptr + 1);
+			  rgb[2] = *(image_ptr + 2);
 
 			  boblight_addpixelxy(m_boblight, x, y, rgb);
 		  }
