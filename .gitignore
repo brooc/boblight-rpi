@@ -42,3 +42,11 @@ src/tcpsocket.o
 src/thread.o
 src/timer.o
 src/timeutils.o
+Makefile
+config.h
+libtool
+src/Makefile
+src/boblight-constant
+src/boblight-openmax
+src/boblightd
+stamp-h1

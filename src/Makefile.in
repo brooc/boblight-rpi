@@ -325,7 +325,7 @@ boblight_openmax_SOURCES = \
 	clients/boblight-openmax/grabber-openmax.cpp \
         util/misc.cpp util/timer.cpp timeutils.cpp
 
-boblight_openmax_LDFLAGS = -L/home/ohad/RaspberryPi/firmware-master/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/ilclient -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/vgfont
+boblight_openmax_LDFLAGS = -L$(SDKSTAGE)/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -L$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont
 
 boblight_openmax_INCLUDE = -I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont -I$(SDKSTAGE)/opt/vc/include/
 
