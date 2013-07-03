@@ -30,7 +30,7 @@ CFlagManagerOpenmax::CFlagManagerOpenmax()
   //i = interval, u = pixels, x = xgetimage, d = debug
   m_flags += "i:u:d::";
 
-  m_interval = 0.5;    //default interval is 100 milliseconds
+  m_interval = 0.1;    //default interval is 100 milliseconds
   m_pixels = 64;       //-1 says to the capture classes to use default
   m_debug = false;     //no debugging by default
   m_debugdpy = NULL;   //default debug dpy is system default
