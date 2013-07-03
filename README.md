@@ -3,6 +3,14 @@ boblight-rpi
 
 Boblight solution for Raspberry Pi using OpenMax
 
+How To Use
+==========
+```
+Upload the file boblight-openmax located in src to your RPi.
+On the RPi:
+./boblight-openmax -p 5 &
+```
+
 How To Compile
 ==============
 
