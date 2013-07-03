@@ -47,6 +47,5 @@ config.h
 libtool
 src/Makefile
 src/boblight-constant
-src/boblight-openmax
 src/boblightd
 stamp-h1
