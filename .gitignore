@@ -5,7 +5,7 @@ config.status
 src/.deps/
 src/.libs/
 src/boblight-constant.o
-src/boblight-openmax.o
+src/boblight-dispmanx.o
 src/client.o
 src/condition.o
 src/configuration.o
@@ -16,9 +16,9 @@ src/devicepopen.o
 src/devicers232.o
 src/devicespi.o
 src/flagmanager-constant.o
-src/flagmanager-openmax.o
+src/flagmanager-dispmanx.o
 src/flagmanager.o
-src/grabber-openmax.o
+src/grabber-dispmanx.o
 src/libboblight.la
 src/libboblight_la-boblight.lo
 src/libboblight_la-boblight.o
