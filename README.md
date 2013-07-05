@@ -1,14 +1,19 @@
 boblight-rpi
 ============
 
-Boblight solution for Raspberry Pi using OpenMax
+Boblight solution for Raspberry Pi using DispmanX
 
 How To Use
 ==========
 ```
-Upload the file boblight-openmax located in src to your RPi.
-On the RPi:
-./boblight-openmax -p 5 &
+Upload the file boblight-dispmanx located in src to your RPi.
+
+On the RPi
+**********
+Check your firmware version with 'vcgencmd version'
+If your firmaware version is older than Jul 2 2013 update your firmware.
+
+./boblight-dispmanx -p 5 &
 ```
 
 How To Compile
