@@ -37,5 +37,5 @@ or this command if cross-compiling
 
 cd src
 
-make SDKSTAGE=<path/to/firmware>
+make SDKSTAGE=<path/to/firmware-directory>
 ```
