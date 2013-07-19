@@ -8,7 +8,7 @@ AM_CFLAGS =\
 
 bin_PROGRAMS = boblightd \
 	boblight-constant \
-	boblight-openmax
+	boblight-dispmanx
         
 
 if HAVE_X11
@@ -35,22 +35,15 @@ boblight_constant_SOURCES = \
 	clients/boblight-constant/flagmanager-constant.cpp \
 	util/misc.cpp
 
-boblight_openmax_SOURCES = \
-        clients/boblight-openmax/boblight-openmax.cpp \
+boblight_dispmanx_SOURCES = \
+        clients/boblight-dispmanx/boblight-dispmanx.cpp \
         clients/flagmanager.cpp \
-        clients/boblight-openmax/flagmanager-openmax.cpp \
+        clients/boblight-dispmanx/flagmanager-dispmanx.cpp \
         util/misc.cpp
 
-boblight_openmax_LDFLAGS = -L/home/ohad/RaspberryPi/firmware-master/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/ilclient -L/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/vgfont
+boblight_dispmanx_LDFLAGS = -L$(SDKSTAGE)/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -L$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont
 
-
-#boblight_openmax_INCLUDE += -I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/ \
-#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/interface/vcos/pthreads \
-#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/interface/vmcs_host/linux \
-#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/ilclient \
-#	-I/home/ohad/RaspberryPi/firmware-master/opt/vc/src/hello_pi/libs/vgfont -I/home/ohad/RaspberryPi/firmware-master/opt/vc/include/
-
-boblight_openmax_INCLUDE = -I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont -I$(SDKSTAGE)/opt/vc/include/
+boblight_dispmanx_INCLUDE = -I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/ilclient -I$(SDKSTAGE)/opt/vc/src/hello_pi/libs/vgfont -I$(SDKSTAGE)/opt/vc/include/
 
 boblight_X11_SOURCES = \
 	clients/boblight-X11/boblight-X11.cpp \
