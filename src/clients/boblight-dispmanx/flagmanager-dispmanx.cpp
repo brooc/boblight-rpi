@@ -88,7 +88,7 @@ void CFlagManagerDispmanX::ParseFlagsExtended(int& argc, char**& argv, int& c, c
 
 void CFlagManagerDispmanX::PrintHelpMessage()
 {
-	  cout << "Usage: boblight-DispmanX [OPTION]\n";
+	  cout << "Usage: boblight-dispmanx [OPTION]\n";
 	  cout << "\n";
 	  cout << "  options:\n";
 	  cout << "\n";
