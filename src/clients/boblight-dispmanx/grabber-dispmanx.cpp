@@ -40,7 +40,7 @@ CGrabberDispmanX::CGrabberDispmanX(void* boblight, volatile bool& stop, bool syn
 	m_debug = false;
 	m_sync = sync;
 
-	type = VC_IMAGE_RGB888;
+	type = VC_IMAGE_RGBA32;
 
 	display  = vc_dispmanx_display_open(0);
 
@@ -69,10 +69,18 @@ bool CGrabberDispmanX::Setup()
 		m_timer.SetInterval(Round64(m_interval * 1000000.0));
 	}
 
-	pitch = ALIGN_UP(m_size*3, 32);
+	if(type == VC_IMAGE_RGB888)
+		pixel_size = 3;
+	else if(type == VC_IMAGE_RGBA32)
+		pixel_size = 4;
 
-	image = new char[m_size * m_size * 3];
+	printf("Pixel size used: %d\n", pixel_size);
 
+	pitch = ALIGN_UP(m_size*pixel_size, 32);
+
+	image = new char[m_size * m_size * pixel_size];
+
+	printf("Creating the resource\n");
 	resource = vc_dispmanx_resource_create(type,
                                            m_size,
                                            m_size,
@@ -103,15 +111,19 @@ bool CGrabberDispmanX::Run()
 	VC_RECT_T rectangle;
 	char* image_ptr;
 
+	int ret;
+
 	boblight_setscanrange(m_boblight, m_size, m_size);
 
 	while(!m_stop)
 	{
-		vc_dispmanx_snapshot(display,resource, VC_IMAGE_ROT0);
+		display  = vc_dispmanx_display_open(0);
+
+		ret = vc_dispmanx_snapshot(display,resource, VC_IMAGE_ROT0);
 
 		vc_dispmanx_rect_set(&rectangle, 0, 0, m_size, m_size);
 
-		vc_dispmanx_resource_read_data(resource, &rectangle, image, m_size*3);
+		vc_dispmanx_resource_read_data(resource, &rectangle, image, m_size*pixel_size);
 
 		image_ptr = (char *)image;
 		//read out the pixels
@@ -120,14 +132,16 @@ bool CGrabberDispmanX::Run()
 //			image_ptr += y*m_size*3;
 			for (int x = 0; x < m_size && !m_stop; x++)
 			{
-				rgb[0] = image_ptr[y*m_size*3+x*3];
-				rgb[1] = image_ptr[y*m_size*3+x*3 + 1];
-				rgb[2] = image_ptr[y*m_size*3+x*3 + 2];
+				rgb[0] = image_ptr[y*m_size*pixel_size+x*pixel_size];
+				rgb[1] = image_ptr[y*m_size*pixel_size+x*pixel_size + 1];
+				rgb[2] = image_ptr[y*m_size*pixel_size+x*pixel_size + 2];
 
 				boblight_addpixelxy(m_boblight, x, y, rgb);
 			}
 		}
 
+		ret = vc_dispmanx_display_close(display);
+		assert( ret == 0 );
 
 		//send pixeldata to boblight
 		if (!boblight_sendrgb(m_boblight, m_sync, NULL))

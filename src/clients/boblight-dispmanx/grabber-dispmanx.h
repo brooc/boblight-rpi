@@ -85,6 +85,7 @@ class CGrabberDispmanX
     uint32_t                    vc_image_ptr;
     VC_IMAGE_TYPE_T             type;
     int 						pitch;
+    int							pixel_size;
 };
 
 #endif //GRABBEROPENMAX
