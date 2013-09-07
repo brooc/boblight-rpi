@@ -112,6 +112,9 @@ bool CGrabberDispmanX::Run()
 	char* image_ptr;
 
 	int ret;
+	uint32_t flags = 0;
+
+	flags |= DISPMANX_SNAPSHOT_NO_RGB|DISPMANX_SNAPSHOT_FILL;
 
 	boblight_setscanrange(m_boblight, m_size, m_size);
 
@@ -119,7 +122,7 @@ bool CGrabberDispmanX::Run()
 	{
 		display  = vc_dispmanx_display_open(0);
 
-		ret = vc_dispmanx_snapshot(display,resource, VC_IMAGE_ROT0);
+		ret = vc_dispmanx_snapshot(display,resource, (DISPMANX_TRANSFORM_T)flags);
 
 		vc_dispmanx_rect_set(&rectangle, 0, 0, m_size, m_size);
 
