@@ -131,6 +131,7 @@ int Run()
 
 		grabber->SetInterval(g_flagmanager.m_interval);
 		grabber->SetSize(g_flagmanager.m_pixels);
+		grabber->SetBackgroundLights(g_flagmanager.m_background);
 
 		if (!grabber->Setup()) //just exit if we can't set up the grabber
 		{

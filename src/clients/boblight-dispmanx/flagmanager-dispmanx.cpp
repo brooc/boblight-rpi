@@ -28,13 +28,14 @@ CFlagManagerDispmanX::CFlagManagerDispmanX()
 {
   //extend the base getopt flags
   //i = interval, u = pixels, x = xgetimage, d = debug
-  m_flags += "i:u:d::";
+  m_flags += "i:u:d:b:";
 
   m_interval = 0.1;    //default interval is 100 milliseconds
   m_pixels = 64;       //-1 says to the capture classes to use default
   m_debug = false;     //no debugging by default
   m_debugdpy = NULL;   //default debug dpy is system default
   m_sync = true;       //sync mode enabled by default
+  m_background = false;
 }
 
 void CFlagManagerDispmanX::ParseFlagsExtended(int& argc, char**& argv, int& c, char*& optarg) //we load our own flags here
@@ -84,6 +85,19 @@ void CFlagManagerDispmanX::ParseFlagsExtended(int& argc, char**& argv, int& c, c
 	      m_debugdpy = m_strdebugdpy.c_str();
 	    }
 	  }
+	  else if (c == 'b') //turn on debug mode
+	  {
+	    if (string(optarg) == "on")
+	    {
+	      m_background = true;
+	    }
+            else if (string(optarg) == "off")
+	    {
+	      m_background = false;
+	    }
+            else
+              throw string("Wrong value " + string(optarg));
+	  }
 }
 
 void CFlagManagerDispmanX::PrintHelpMessage()
@@ -92,6 +106,7 @@ void CFlagManagerDispmanX::PrintHelpMessage()
 	  cout << "\n";
 	  cout << "  options:\n";
 	  cout << "\n";
+	  cout << "  -b  set lights for GUI, default is off, valid options are \"on\" and \"off\"\n";
 	  cout << "  -p  priority, from 0 to 255, default is 128\n";
 	  cout << "  -s  address:[port], set the address and optional port to connect to\n";
 	  cout << "  -o  add libboblight option, syntax: [light:]option=value\n";

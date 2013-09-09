@@ -34,6 +34,7 @@ public:
 	double      m_interval;           //grab interval in seconds, or vertical blanks when negative
 	int         m_pixels;             //number of pixels on lines to capture
 	bool        m_debug;              //if true we make a little window where we put our captured output on, looks pretty
+	bool        m_background;         //if true lights will be lit in GUI
 	const char* m_debugdpy;           //display to place the debug window on, default is NULL
 
 private:

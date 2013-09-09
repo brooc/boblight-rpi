@@ -44,6 +44,7 @@ class CGrabberDispmanX
 
     void SetInterval(double interval) { m_interval = interval; } //sets interval, negative means vblanks
     void SetSize(int size)            { m_size = size; }         //sets how many pixels we want to grab
+    void SetBackgroundLights(int background)            { m_background = background; }         //sets how many pixels we want to grab
 
     bool Setup();                                                //base setup function
 
@@ -61,6 +62,7 @@ class CGrabberDispmanX
     int               m_size;                                    //nr of pixels on lines to grab
 
     bool              m_debug;                                   //if we have debug mode on
+    bool	      m_background;                              //if we want the lights on in GUI
 
     long double       m_lastupdate;
     long double       m_lastmeasurement;

@@ -39,6 +39,7 @@ CGrabberDispmanX::CGrabberDispmanX(void* boblight, volatile bool& stop, bool syn
 	m_boblight = boblight;
 	m_debug = false;
 	m_sync = sync;
+	m_background = false;
 
 	type = VC_IMAGE_RGBA32;
 
@@ -80,7 +81,6 @@ bool CGrabberDispmanX::Setup()
 
 	image = new char[m_size * m_size * pixel_size];
 
-	printf("Creating the resource\n");
 	resource = vc_dispmanx_resource_create(type,
                                            m_size,
                                            m_size,
@@ -114,7 +114,11 @@ bool CGrabberDispmanX::Run()
 	int ret;
 	uint32_t flags = 0;
 
-	flags |= DISPMANX_SNAPSHOT_NO_RGB|DISPMANX_SNAPSHOT_FILL;
+	if(!m_background)
+        {
+		flags |= DISPMANX_SNAPSHOT_NO_RGB|DISPMANX_SNAPSHOT_FILL;
+                printf("Running without background colors\n");
+	}
 
 	boblight_setscanrange(m_boblight, m_size, m_size);
 
